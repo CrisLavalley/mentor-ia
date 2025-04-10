@@ -13,18 +13,18 @@ const ChatGPTBox = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
         },
         body: JSON.stringify({
           model: 'gpt-3.5-turbo',
-          messages: [{ role: 'user', content: input }],
-        }),
+          messages: [{ role: 'user', content: input }]
+        })
       })
 
       const data = await res.json()
       const reply = data.choices?.[0]?.message?.content || 'Sin respuesta'
       setResponse(reply)
-    } catch (err) {
+    } catch (error) {
       setResponse('Error al comunicarse con la API')
     } finally {
       setLoading(false)
@@ -32,25 +32,26 @@ const ChatGPTBox = () => {
   }
 
   return (
-    <div className="p-4 border rounded-xl shadow max-w-lg mx-auto mt-4 bg-white">
-      <h2 className="text-xl font-bold mb-2">Asistente IA</h2>
+    <div className="max-w-xl mx-auto p-4 bg-white shadow-md rounded-xl mt-10">
+      <h2 className="text-2xl font-semibold mb-4">Mentor IA - ChatGPT</h2>
       <textarea
-        className="w-full p-2 border rounded mb-2"
-        rows="4"
-        placeholder="Escribe tu pregunta..."
+        className="w-full border rounded p-2 mb-4"
+        rows={4}
+        placeholder="Escribe tu pregunta aquí..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
       <button
         onClick={handleSend}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         disabled={loading}
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
       >
-        {loading ? 'Cargando...' : 'Enviar'}
+        {loading ? 'Generando...' : 'Generar'}
       </button>
       {response && (
-        <div className="mt-4 p-2 border rounded bg-gray-100 whitespace-pre-line">
-          <strong>Respuesta:</strong> {response}
+        <div className="mt-4 border rounded p-3 bg-gray-50">
+          <strong>Respuesta:</strong>
+          <p className="whitespace-pre-wrap mt-2">{response}</p>
         </div>
       )}
     </div>

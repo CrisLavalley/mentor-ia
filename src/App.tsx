@@ -20,7 +20,7 @@ Responde en Markdown estructurado con títulos claros para cada sección.
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer TU_API_KEY`,
+        "Authorization": `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
