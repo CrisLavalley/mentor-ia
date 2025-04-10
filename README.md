@@ -74,6 +74,6 @@ mentor-ia/
 
 ## 👩‍💻 Autor
 
-Proyecto desarrollado por **Cristhianne de León** como actividad académica para la materia de Inteligencia Artificial y Aplicaciones.
+Proyecto desarrollado por **Cristhianne de León** como actividad académica para la materia de Inteligencia de Negocios.
 
 ---
